@@ -1,3 +1,4 @@
 /base62.test
 /bench.txt
-/prof
+/mem.out
+/cpu.out
