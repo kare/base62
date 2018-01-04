@@ -2,6 +2,7 @@ package base62 // import "kkn.fi/base62"
 
 import (
 	"fmt"
+	"math"
 	"strings"
 )
 
@@ -16,11 +17,13 @@ func Encode(n int64) string {
 		return "0"
 	}
 
-	s := ""
-	for ; n > 0; n = n / length {
-		s = string(alphabet[n%length]) + s
+	b := make([]byte, 0, 512)
+	for n > 0 {
+		r := math.Mod(float64(n), float64(length))
+		n /= length
+		b = append([]byte{alphabet[int(r)]}, b...)
 	}
-	return s
+	return string(b)
 }
 
 // Decode a base62 encoded string to int.
