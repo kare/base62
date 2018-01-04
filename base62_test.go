@@ -11,7 +11,10 @@ func TestEncode(t *testing.T) {
 		expected string
 	}{
 		{0, "0"},
+		{10, "a"},
+		{630, "aa"},
 		{2222821365901088, "abc123EFG"},
+		{3781504209452600, "hjNv8tS3K"},
 	}
 	for _, testCase := range testData {
 		r := Encode(testCase.n)
@@ -32,7 +35,10 @@ func TestDecode(t *testing.T) {
 		expected int64
 	}{
 		{"0", 0},
+		{"a", 10},
+		{"aa", 630},
 		{"abc123EFG", 2222821365901088},
+		{"hjNv8tS3K", 3781504209452600},
 	}
 	for _, testCase := range testData {
 		n, err := Decode(testCase.key)
