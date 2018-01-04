@@ -8,7 +8,7 @@ import (
 
 const (
 	alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	length   = int64(len(alphabet))
+	base     = int64(len(alphabet))
 )
 
 // Encode decoded integer to base62 string.
@@ -19,8 +19,8 @@ func Encode(n int64) string {
 
 	b := make([]byte, 0, 512)
 	for n > 0 {
-		r := math.Mod(float64(n), float64(length))
-		n /= length
+		r := math.Mod(float64(n), float64(base))
+		n /= base
 		b = append([]byte{alphabet[int(r)]}, b...)
 	}
 	return string(b)
@@ -35,7 +35,7 @@ func Decode(s string) (int64, error) {
 		if i < 0 {
 			return 0, fmt.Errorf("unexpected character %c in base62 literal", c)
 		}
-		r = length*r + int64(i)
+		r = base*r + int64(i)
 	}
 	return r, nil
 }
