@@ -8,7 +8,7 @@
     go get kkn.fi/base62
 
 ### Requirements
-* Go 1.13
+* Go 1.17
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first
