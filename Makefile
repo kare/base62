@@ -1,39 +1,55 @@
+LANG := en_US.UTF-8
+SHELL := /bin/bash
+.SHELLFLAGS := --norc --noprofile -e -u -o pipefail -c
+.DEFAULT_GOAL := build
 
-IMPORT_PATH := kkn.fi/base62
-NAME := base62
+name := kkn.fi/base62
 
-GOMETALINTER := $(GOPATH)/bin/gometalinter
+GOIMPORTS := $(GOPATH)/bin/goimports
+STATICCHECK := $(GOPATH)/bin/staticcheck
+GOLANGCI-LINT := $(GOPATH)/bin/golangci-lint
+
+.PHONY: build
+build:
+	go build $(name)
 
 .PHONY: test
 test:
-	go test -v $(IMPORT_PATH)
+	go test $(name)
 
-.PHONY: clean
-clean:
-	@rm -f cpu.out mem.out bench.txt $(NAME).test
+$(GOIMPORTS):
+	go install golang.org/x/tools/cmd/goimports@latest
 
-$(NAME).test:
-	go test -c
+$(GOLANGCI-LINT):
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(shell go env GOPATH)/bin v1.41.1
 
-benchmark: $(NAME).test
-	./$(NAME).test -test.bench=. -test.count=5 | tee bench.txt
+$(STATICCHECK):
+	go install honnef.co/go/tools/cmd/staticcheck@latest
 
-mem.out:
-	go test -v -benchmem -memprofile=mem.out -run=^$$ -bench=.
+.PHONY: fmt
+fmt:
+	gofmt -w -s .
 
-mem-profile: mem.out
-	go tool pprof -alloc_space $(NAME).test mem.out
+.PHONY: goimports
+goimports: fmt $(GOIMPORTS)
+	$(GOIMPORTS) -w .
 
-cpu.out:
-	go test -v -cpuprofile=cpu.out -run=^$$ -bench=.
+.PHONY: staticcheck
+staticcheck: $(STATICCHECK)
+	$(STATICCHECK) -go 1.17 ./...
 
-cpu-profile: cpu.out
-	go tool pprof $(NAME).test cpu.out
+.PHONY: golangci-lint
+golangci-lint: $(GOLANGCI-LINT)
+	$(GOLANGCI-LINT) run ./...
 
-.PHONY: lint
-lint: $(GOMETALINTER)
-	gometalinter ./...
+.PHONY: cover
+cover:
+	go test -coverprofile=coverage.out $(name)
+	go tool cover -html=coverage.out
+	@rm -f coverage.out
 
-$(GOMETALINTER):
-	go get -u github.com/alecthomas/gometalinter
-	gometalinter --install
+.PHONY: heat
+heat:
+	go test -covermode=count -coverprofile=count.out $(name)
+	go tool cover -html=count.out
+	@rm -f count.out
