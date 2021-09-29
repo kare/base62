@@ -1,7 +1,7 @@
 
 # Base62 encoding and decoding
 
-[![Build Status](https://travis-ci.org/kare/base62.svg?branch=master)](https://travis-ci.org/kare/base62)
+[![CI](https://github.com/kare/base62/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/kare/base62/actions/workflows/ci.yaml)
 [![Go Reference](https://pkg.go.dev/badge/kkn.fi/base62.svg)](https://pkg.go.dev/kkn.fi/base62)
 
 ## Installation
