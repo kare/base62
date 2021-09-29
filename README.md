@@ -2,7 +2,7 @@
 # Base62 encoding and decoding
 
 [![Build Status](https://travis-ci.org/kare/base62.svg?branch=master)](https://travis-ci.org/kare/base62)
-[GoDoc](https://pkg.go.dev/kkn.fi/base62)
+[![Go Reference](https://pkg.go.dev/badge/kkn.fi/base62.svg)](https://pkg.go.dev/kkn.fi/base62)
 
 ## Installation
     go get kkn.fi/base62
