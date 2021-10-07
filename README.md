@@ -3,6 +3,7 @@
 
 [![CI](https://github.com/kare/base62/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/kare/base62/actions/workflows/ci.yaml)
 [![Go Reference](https://pkg.go.dev/badge/kkn.fi/base62.svg)](https://pkg.go.dev/kkn.fi/base62)
+[![GoReportCard](https://goreportcard.com/badge/kkn.fi/base62)](https://goreportcard.com/report/kkn.fi/base62)
 
 ## Installation
     go get kkn.fi/base62
