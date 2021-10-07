@@ -1,20 +1,24 @@
 LANG = en_US.UTF-8
 SHELL = /bin/bash
 .SHELLFLAGS := --norc --noprofile -e -u -o pipefail -c
-.DEFAULT_GOAL = all
+.DEFAULT_GOAL := all
 
-STATICCHECK = $(GOPATH)/bin/staticcheck
+STATICCHECK := $(GOPATH)/bin/staticcheck
 
+.PHONY: all
 all: check-fmt check-fmt-simplify staticcheck
 
+.PHONY: check-fmt
 check-fmt:
 	diff -u <(echo -n) <(gofmt -d ./)
 
+.PHONY: check-fmt-simplify
 check-fmt-simplify:
 	diff -u <(echo -n) <(gofmt -s -d ./)
 
 $(STATICCHECK):
 	go install honnef.co/go/tools/cmd/staticcheck@latest
 
+.PHONY: staticcheck
 staticcheck: $(STATICCHECK)
-	staticcheck -go 1.17 ./...
+	staticcheck ./...
