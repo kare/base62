@@ -22,6 +22,7 @@ updates:
     schedule:
       interval: daily
       time: "03:00"
+      timezone: Europe/Helsinki
     open-pull-requests-limit: 5
     commit-message:
       prefix: build
