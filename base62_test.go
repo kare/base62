@@ -57,7 +57,7 @@ func ExampleDecode() {
 	// Output: 99 <nil>
 }
 
-var result interface{}
+var result any
 
 func BenchmarkEncode(b *testing.B) {
 	for n := 0; n < b.N; n++ {
