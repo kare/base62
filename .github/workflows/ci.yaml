@@ -9,7 +9,7 @@ on:
       - main
 concurrency:
   group: ci-${{ github.head_ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 defaults:
   run:
     shell: bash
