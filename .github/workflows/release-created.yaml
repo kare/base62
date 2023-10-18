@@ -1,0 +1,12 @@
+---
+name: Release created
+on:
+  release:
+    types:
+      - created
+jobs:
+  released:
+    uses: kare/github/.github/workflows/go-release.yaml@main
+    with:
+      go_module_path: kkn.fi/base62
+      version: ${{ github.event.release.tag_name }}
