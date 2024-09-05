@@ -10,7 +10,6 @@ updates:
     open-pull-requests-limit: 5
     commit-message:
       prefix: ci
-      include: scope
     reviewers:
       - kare
     assignees:
@@ -26,7 +25,6 @@ updates:
     open-pull-requests-limit: 5
     commit-message:
       prefix: build
-      include: scope
     reviewers:
       - kare
     assignees:
