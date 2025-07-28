@@ -16,3 +16,6 @@ defaults:
 jobs:
   ci:
     uses: kare/github/.github/workflows/go-pkg-ci.yaml@main
+    with:
+      staticcheckversion: 2025.1.1
+
