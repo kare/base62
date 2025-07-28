@@ -14,16 +14,3 @@ updates:
       - kare
     labels:
       - ci
-  - package-ecosystem: gomod
-    directory: "/"
-    schedule:
-      interval: weekly
-      time: "03:00"
-      timezone: Europe/Helsinki
-    open-pull-requests-limit: 5
-    commit-message:
-      prefix: build
-    assignees:
-      - kare
-    labels:
-      - build
