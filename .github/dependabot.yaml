@@ -4,30 +4,13 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: daily
+      interval: weekly
       time: "03:00"
       timezone: Europe/Helsinki
     open-pull-requests-limit: 5
     commit-message:
       prefix: ci
-    reviewers:
-      - kare
     assignees:
       - kare
     labels:
       - ci
-  - package-ecosystem: gomod
-    directory: "/"
-    schedule:
-      interval: daily
-      time: "03:00"
-      timezone: Europe/Helsinki
-    open-pull-requests-limit: 5
-    commit-message:
-      prefix: build
-    reviewers:
-      - kare
-    assignees:
-      - kare
-    labels:
-      - build
